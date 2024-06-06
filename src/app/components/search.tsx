@@ -10,8 +10,6 @@ type SearchProps = {
 const Search = ({ className }: SearchProps) => {
   const [isSearchActive, setIsSearchActive] = useState(false);
 
-  console.log("isSearchActive", isSearchActive);
-
   return (
     <div className={`relative ${className}`}>
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -39,7 +37,7 @@ const Search = ({ className }: SearchProps) => {
         className="h-8 py-1 pl-10 pr-4 rounded-sm text-sm min-w-96 bg-secondary text-white focus-visible:outline-none"
         onFocus={() => setIsSearchActive(true)}
         onBlur={() => setIsSearchActive(false)}
-        placeholder="Search for movies or tv series..."
+        placeholder="Search for movies..."
         required
       />
 

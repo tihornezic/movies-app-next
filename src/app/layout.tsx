@@ -17,12 +17,14 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const layoutStyles = "px-48";
+
   return (
     <html lang="en">
       <body className={`${inter.className} bg-main min-h-[2220px]`}>
-        <Header className="px-48" />
+        <Header className={`${layoutStyles}`} />
 
-        <div className="px-48">{children}</div>
+        <div className={`${layoutStyles}`}>{children}</div>
       </body>
     </html>
   );

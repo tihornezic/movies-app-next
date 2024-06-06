@@ -34,7 +34,7 @@ const Header = ({ className }: HeaderProps) => {
     >
       <div className="flex w-full items-center gap-x-16">
         <Link href="/">
-          <div className="text-primary text-xl font-normal">MoviesApp</div>
+          <div className="text-primary-100 text-xl font-normal">MoviesApp</div>
         </Link>
 
         <nav>
