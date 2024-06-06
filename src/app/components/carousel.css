@@ -1,0 +1,11 @@
+.carousel:hover .aaaa {
+  /* display: flex !important; */
+  opacity: 1 !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* .carousel:before {
+  content: "";
+  
+  mask-image: linear-gradient(90deg, #060d17 90%, transparent);
+} */
