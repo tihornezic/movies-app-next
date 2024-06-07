@@ -10,9 +10,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   console.log("data", movieData);
 
-  const date = new Date(movieData.release_date);
-  const year = date.getFullYear();
-
   return (
     <div className="relative">
       <div
@@ -27,13 +24,8 @@ const Page = async ({ params }: { params: { id: string } }) => {
         />
       </div>
 
-      <MovieInfo
-        title={movieData.title}
-        genres={movieData.genres}
-        posterPath={movieData.poster_path}
-        year={year}
-        overview={movieData.overview}
-      />
+      {/* make skeleton for this */}
+      <MovieInfo movieId={movieId} movieData={movieData} />
     </div>
   );
 };

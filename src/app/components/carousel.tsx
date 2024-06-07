@@ -1,13 +1,13 @@
 "use client";
 
 import Slider from "react-slick";
-import { CSSProperties, ReactNode, useRef } from "react";
+import { AwaitedReactNode, CSSProperties, ReactNode, useRef } from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 import MovieCard from "./movie-card";
 import { Movies } from "../lib/types";
 
-type CarouselProps = {
-  moviesArray: Movies["results"];
+type CarouselProps<T> = {
+  carouselArray: T[];
 };
 
 const settings = {
@@ -15,12 +15,12 @@ const settings = {
   arrows: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
+  slidesToShow: 3,
+  slidesToScroll: 3,
   variableWidth: true,
 };
 
-const Carousel = ({ moviesArray }: CarouselProps) => {
+const Carousel = <T extends ReactNode>({ carouselArray }: CarouselProps<T>) => {
   const sliderRef = useRef<any>();
 
   const handleOnPrevious = () => {
@@ -77,15 +77,7 @@ const Carousel = ({ moviesArray }: CarouselProps) => {
         }}
       >
         <Slider ref={sliderRef} {...settings}>
-          {moviesArray.map((item) => (
-            <div key={item.id} className="pr-4">
-              <MovieCard
-                id={item.id}
-                posterPath={item.poster_path}
-                alt={item.title}
-              />
-            </div>
-          ))}
+          {carouselArray}
         </Slider>
       </div>
 
