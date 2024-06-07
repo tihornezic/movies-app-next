@@ -7,9 +7,11 @@ import MovieCard from "./movie-card";
 type CarouselWrapperProps = {
   url: string;
   title?: string;
+  titleStyles?: React.ComponentProps<"div">["className"];
 };
 
-const CarouselWrapper = async ({ url, title }: CarouselWrapperProps) => {
+const CarouselWrapper = async ({ url, title, titleStyles }: CarouselWrapperProps) => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const moviesData = await fetchInstance<Movies>(url);
 
   console.log("moviesData", moviesData);
@@ -22,7 +24,7 @@ const CarouselWrapper = async ({ url, title }: CarouselWrapperProps) => {
 
   return (
     <div className="flex flex-col">
-      {title && <h2 className="my-4 text-2xl font-bold text-white">{title}</h2>}
+      {title && <h3 className={`my-4 text-2xl font-bold text-white ${titleStyles}`}>{title}</h3>}
 
       <Carousel carouselArray={moviesCarouselArray} />
     </div>
