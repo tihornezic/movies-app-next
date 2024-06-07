@@ -3,8 +3,8 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import Search from "../search";
+import { FilmIcon } from "@heroicons/react/24/solid";
 
 const siteRoutes = [
   {
@@ -33,9 +33,15 @@ const Header = ({ className }: HeaderProps) => {
       className={`sticky top-0 z-[100] flex justify-between items-center py-3 bg-main ${className}`}
     >
       <div className="flex w-full items-center gap-x-16">
-        <Link href="/">
-          <div className="text-primary-100 text-xl font-normal">MoviesApp</div>
-        </Link>
+        <div className="flex gap-1 items-center">
+          <FilmIcon className="size-6 text-primary-100" />
+
+          <Link href="/">
+            <div className="text-primary-100 text-xl font-extrabold">
+              MoviesApp
+            </div>
+          </Link>
+        </div>
 
         <nav>
           <ul className="flex gap-x-10 text-[14px]">
