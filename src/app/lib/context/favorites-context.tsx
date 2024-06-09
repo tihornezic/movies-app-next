@@ -6,6 +6,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { MovieDetailedType } from "../types";
@@ -18,11 +19,15 @@ type FavoritesContext = {
 export const FavoritesContext = createContext<FavoritesContext | null>(null);
 
 const FavoritesContextProvider = ({ children }: { children: ReactNode }) => {
-  const [favoriteMovies, setFavoriteMovies] = useState(
-    localStorage.getItem("favoriteMoviesIds")
+  const [favoriteMovies, setFavoriteMovies] = useState<MovieDetailedType[]>([]);
+
+  useEffect(() => {
+    const ls = localStorage.getItem("favoriteMoviesIds")
       ? JSON.parse(localStorage.getItem("favoriteMoviesIds") as string)
-      : []
-  );
+      : [];
+
+    setFavoriteMovies(ls);
+  }, []);
 
   return (
     <FavoritesContext.Provider value={{ favoriteMovies, setFavoriteMovies }}>

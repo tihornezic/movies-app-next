@@ -49,6 +49,7 @@ const MovieCard = ({ movieDetails }: MovieCardProps) => {
         width={190}
         height={240}
         priority
+        className="rounded-md"
       />
 
       <div className={styles["movie-card-overlay"]}>

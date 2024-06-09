@@ -20,7 +20,7 @@ const HeartAndUnheart = ({ movie }: HeartAndUnheartProps) => {
     const handleOnClick = () => {
     if (isMovieFavorite) {
       const filteredMovies = favoriteMovies.filter(
-        (movie: any) => movie.id !== movie.id
+        (item) => item.id !== movie.id
       );
 
       setFavoriteMovies(filteredMovies);
