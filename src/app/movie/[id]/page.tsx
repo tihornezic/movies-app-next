@@ -8,8 +8,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   const movieData = await fetchInstance<MovieDetailedType>(`/movie/${movieId}`);
 
-  console.log("data", movieData);
-
   return (
     <div className="relative">
       <div

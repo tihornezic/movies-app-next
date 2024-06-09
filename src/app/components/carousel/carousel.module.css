@@ -1,0 +1,4 @@
+.carousel:hover .carousel-button {
+  opacity: 1 !important;
+  transition: all 0.3s ease-in-out;
+}

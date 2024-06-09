@@ -6,9 +6,10 @@ import Image from "next/image";
 type PosterImageProps = {
   posterPath: string;
   alt: string;
+  className?: React.ComponentProps<"div">["className"];
 };
 
-const PosterImage = ({ posterPath, alt }: PosterImageProps) => {
+const PosterImage = ({ posterPath, alt, className }: PosterImageProps) => {
   return (
     <Image
       src={`${POSTER_URL_BIG}/${posterPath}`}
@@ -20,8 +21,7 @@ const PosterImage = ({ posterPath, alt }: PosterImageProps) => {
       onLoad={(event) => {
         event.currentTarget.setAttribute("data-loaded", "true");
       }}
-      // className="data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10 rounded-md w-[300px] h-[480px]"
-      className="data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10 rounded-md"
+      className={`data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10 rounded-md ${className}`}
     />
   );
 };

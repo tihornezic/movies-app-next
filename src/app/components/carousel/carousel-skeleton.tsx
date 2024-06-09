@@ -1,5 +1,5 @@
 import React from "react";
-import CardSkeleton from "./card-skeleton";
+import CardSkeleton from "../card-skeleton/card-skeleton";
 
 type CarouselSkeletonProps = {
   cardsSkeletonLength?: number;

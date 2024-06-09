@@ -1,15 +1,10 @@
-// import PosterImage from "./(components)/poster-image";
-import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import PosterImage from "./poster-image";
-import { MovieBaseType, MovieDetailedType, Movies } from "@/app/lib/types";
+import { MovieDetailedType } from "@/app/lib/types";
 import { fetchInstance } from "@/app/lib/fetch";
-import Carousel from "@/app/components/carousel";
-import MovieCard from "@/app/components/movie-card";
-import Slider from "react-slick";
-import CarouselSkeleton from "@/app/components/carousel-skeleton";
-import CarouselWrapper from "@/app/components/carousel-wrapper";
 import { Suspense } from "react";
+import HeartAndUnheart from "./heart-and-unheart";
+import CarouselSkeleton from "@/app/components/carousel/carousel-skeleton";
+import CarouselWrapper from "@/app/components/carousel/carousel-wrapper";
 
 type MovieInfoProps = {
   movieId: string;
@@ -24,18 +19,15 @@ const sharedSkeletonProps = {
 const MovieInfo = async ({ movieId, movieData }: MovieInfoProps) => {
   const creditsData = await fetchInstance<any>(`/movie/${movieId}/credits`);
 
-  console.log("creditsData", creditsData);
-
   const date = new Date(movieData.release_date);
   const year = date.getFullYear();
 
+  // TODO: type crew
   const director = creditsData?.crew?.find(
     (member: any) => member.job === "Director"
   );
 
   const cast = creditsData.cast;
-
-  console.log("cast", cast);
 
   const castArray = cast
     .map((item: any) => (
@@ -46,27 +38,31 @@ const MovieInfo = async ({ movieId, movieData }: MovieInfoProps) => {
     ))
     .slice(0, 5);
 
-  const similarData = await fetchInstance<Movies>(`/movie/${movieId}/similar`);
-  console.log("similarData", similarData.results);
-
   return (
     <div className="absolute flex flex-col gap-9 w-[100%] sm:w-[85%] lg:w-[60%] xl:w-[65%] h-fit left-[50%] translate-x-[-50%] pb-20 top-[20%] sm:top-[30%] lg:top-[45%] rounded-md bg-main p-5">
-      <div className="flex gap-5">
-        <PosterImage posterPath={movieData.poster_path} alt={movieData.title} />
+      <div className="flex gap-5 flex-col-reverse xl:flex-row">
+        <PosterImage
+          posterPath={movieData.poster_path}
+          alt={movieData.title}
+          className={"self-center"}
+        />
 
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
             {/* movie title & release year */}
             <div className="flex items-center h-fit gap-1 max-w-[80%]">
-              <h2 className="text-white font-bold text-2xl max-w-[60%]">{movieData.title}</h2>
-
-              <span className="text-gray-400 h-fit text-lg self-end">
-                ({year})
-              </span>
+              <h2 className="text-white font-bold text-2xl max-w-[60%]">
+                {movieData.title}{" "}
+                <span className="text-gray-400 h-fit text-lg font-medium">
+                  ({year})
+                </span>
+              </h2>
             </div>
 
             <div className="flex flex-col">
-              <span className="text-gray-400 font-normal text-sm">DIRECTOR</span>
+              <span className="text-gray-400 font-normal text-sm">
+                DIRECTOR
+              </span>
               <span className="text-teal-700 text-sm">{director.name}</span>
             </div>
 
@@ -91,19 +87,24 @@ const MovieInfo = async ({ movieId, movieData }: MovieInfoProps) => {
           </div>
 
           {/* favorite icons */}
-          <div className="flex h-fit absolute right-6 top-6">
-            <HeartIconOutline className="size-7 text-red-700" />
-            {/* <HeartIconSolid className="size-6 text-red-700" /> */}
-          </div>
+          <HeartAndUnheart movie={movieData} />
         </div>
       </div>
 
       <Suspense fallback={<CarouselSkeleton {...sharedSkeletonProps} />}>
-        <CarouselWrapper url={`/movie/${movieId}/recommendations`} title="Recommendations" titleStyles="text-[1.3rem]" />
+        <CarouselWrapper
+          url={`/movie/${movieId}/recommendations`}
+          title="Recommendations"
+          titleStyles="text-[1.3rem]"
+        />
       </Suspense>
 
       <Suspense fallback={<CarouselSkeleton {...sharedSkeletonProps} />}>
-        <CarouselWrapper url={`/movie/${movieId}/similar`} title="Similar" titleStyles="text-[1.3rem]" />
+        <CarouselWrapper
+          url={`/movie/${movieId}/similar`}
+          title="Similar"
+          titleStyles="text-[1.3rem]"
+        />
       </Suspense>
     </div>
   );

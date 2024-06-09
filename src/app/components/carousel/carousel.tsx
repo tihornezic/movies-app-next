@@ -1,10 +1,9 @@
 "use client";
 
 import Slider from "react-slick";
-import { AwaitedReactNode, CSSProperties, ReactNode, useRef } from "react";
+import { CSSProperties, ReactNode, useRef } from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
-import MovieCard from "./movie-card";
-import { Movies } from "../lib/types";
+import styles from "./carousel.module.css";
 
 type CarouselProps<T> = {
   carouselArray: T[];
@@ -42,7 +41,7 @@ const Carousel = <T extends ReactNode>({ carouselArray }: CarouselProps<T>) => {
   }) => {
     return (
       <button
-        className="carousel-button"
+        className={styles["carousel-button"]}
         onClick={onClick}
         style={{
           right: 0,
@@ -65,7 +64,7 @@ const Carousel = <T extends ReactNode>({ carouselArray }: CarouselProps<T>) => {
   };
 
   return (
-    <div className="carousel relative">
+    <div className={`${styles["carousel"]} relative`}>
       <CarouselButton onClick={handleOnPrevious} style={{ left: 0 }}>
         <ChevronLeftIcon className="size-6 text-white" />
       </CarouselButton>

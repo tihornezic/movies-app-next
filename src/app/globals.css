@@ -9,7 +9,29 @@ html, body {
   overflow-x: clip;
 }
 
-.carousel:hover .carousel-button {
-  opacity: 1 !important;
-  transition: all 0.3s ease-in-out;
+::-webkit-scrollbar {
+  width: 12px; 
+  height: 12px; 
+}
+
+/* track */
+::-webkit-scrollbar-track {
+  /* change track color */
+  background: #f1f1f1; 
+  /* change border radius */
+  border-radius: 10px; 
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  /* change handle color */
+  background: #888; 
+  /* change handle border radius */
+  border-radius: 10px; 
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* change handle color on hover */
+  background: #555; 
 }

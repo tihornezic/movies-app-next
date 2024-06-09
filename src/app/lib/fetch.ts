@@ -10,7 +10,7 @@ export const fetchInstance = async <T>(
   const fetchOptions = {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.TBDB_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TBDB_ACCESS_TOKEN}`,
     },
     method,
     ...options,
