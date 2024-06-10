@@ -18,8 +18,7 @@ const MovieCard = ({ movieDetails }: MovieCardProps) => {
   const { favoriteMovies, setFavoriteMovies } = useFavoritesContext();
 
   const isMovieFavorite =
-    favoriteMovies.map((movie: any) => movie.id).indexOf(movieDetails.id) !==
-    -1;
+    favoriteMovies.map((movie) => movie.id).indexOf(movieDetails.id) !== -1;
 
   useEffect(() => {
     localStorage.setItem("favoriteMoviesIds", JSON.stringify(favoriteMovies));
@@ -29,7 +28,7 @@ const MovieCard = ({ movieDetails }: MovieCardProps) => {
   const handleOnClick = () => {
     if (isMovieFavorite) {
       const filteredMovies = favoriteMovies.filter(
-        (movie: any) => movie.id !== movieDetails.id
+        (movie) => movie.id !== movieDetails.id
       );
 
       setFavoriteMovies(filteredMovies);
@@ -38,9 +37,12 @@ const MovieCard = ({ movieDetails }: MovieCardProps) => {
     }
   };
 
+  // TODO: make conditional width & styles based on url!
+
   return (
     <Link
       href={`/movie/${movieDetails.id}`}
+      // className={`${styles["movie-card"]} relative w-[100%]`}
       className={`${styles["movie-card"]} relative`}
     >
       <Image
@@ -48,8 +50,14 @@ const MovieCard = ({ movieDetails }: MovieCardProps) => {
         alt={movieDetails.title}
         width={190}
         height={240}
+
+        // width="0"
+        // height="0"
+        // sizes="100%"
+        // thhis:
+        // className="w-[100%]"
         priority
-        className="rounded-md"
+        // className="rounded-md"
       />
 
       <div className={styles["movie-card-overlay"]}>

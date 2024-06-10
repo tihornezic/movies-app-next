@@ -13,7 +13,7 @@ const HeaderDropdown = () => {
   return (
     <div
       className={clsx(
-        `${styles["header-dropdown"]} w-[380px] h-[300px] rounded-md bg-secondary overflow-y-auto`,
+        `${styles["header-dropdown"]} w-[380px] h-[300px] rounded-md bg-gray-900 overflow-y-auto`,
         {
           "flex items-center justify-center": isEmptyFavorites,
         }

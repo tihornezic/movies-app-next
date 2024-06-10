@@ -14,7 +14,7 @@ const HeartAndUnheart = ({ movie }: HeartAndUnheartProps) => {
   const { favoriteMovies, setFavoriteMovies } = useFavoritesContext();
 
   const isMovieFavorite =
-    favoriteMovies.map((movie: any) => movie.id).indexOf(movie.id) !== -1;
+    favoriteMovies.map((movie) => movie.id).indexOf(movie.id) !== -1;
 
     // TODO: make this reusable
     const handleOnClick = () => {

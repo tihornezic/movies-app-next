@@ -55,7 +55,7 @@ const Home = () => {
           <CarouselWrapper url="/movie/now_playing" title="Now playing" />
         </Suspense>
 
-        {/* now playing movies */}
+        {/* popular movies */}
         <Suspense fallback={<CarouselSkeleton {...sharedSkeletonProps} />}>
           <CarouselWrapper url="/movie/popular" title="Popular" />
         </Suspense>

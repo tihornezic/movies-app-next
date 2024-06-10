@@ -23,7 +23,7 @@ type SpokenLanguages = {
   name: string;
 };
 
-type Genre = {
+export type Genre = {
   id: number;
   name: string;
 };
@@ -82,3 +82,8 @@ export type Movies = {
   total_pages: number;
   total_results: number;
 };
+
+export enum EnumTrigger {
+  click,
+  hover,
+}
