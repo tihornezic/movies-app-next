@@ -4,9 +4,13 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FilmIcon } from "@heroicons/react/24/solid";
-import HeaderDropdown from "./header-dropdown";
-import Search from "../../search/search";
-import styles from "./header.module.css";
+import Dropdown from "../../dropdown/dropdown";
+import Search from "../../inputs/search-input";
+// import styles from "./header.module.css";
+import { useFavoritesContext } from "@/app/lib/context/favorites-context";
+import MovieListItem from "../../movie-item/movie-item";
+import { EnumShowOn, MovieDetailedType } from "@/app/lib/types";
+import MoviesSearch from "./components/movies-search";
 
 const siteRoutes = [
   {
@@ -27,8 +31,15 @@ type HeaderProps = {
   className?: React.ComponentProps<"div">["className"];
 };
 
+const itemElement = (key: string, item: MovieDetailedType) => (
+  <MovieListItem key={key} movie={item} />
+);
+
 const Header = ({ className }: HeaderProps) => {
   const pathname = usePathname();
+  const { favoriteMovies } = useFavoritesContext();
+
+  const isEmptyFavorites = favoriteMovies.length === 0;
 
   return (
     <header
@@ -55,7 +66,7 @@ const Header = ({ className }: HeaderProps) => {
           <ul className="flex gap-x-10 text-[14px]">
             {siteRoutes.map((siteRoute) => {
               return (
-                <li key={siteRoute.href} className={styles["header-item"]}>
+                <li key={siteRoute.href} className="relative group">
                   <Link
                     href={siteRoute.href}
                     className={clsx("text-sm", {
@@ -67,7 +78,19 @@ const Header = ({ className }: HeaderProps) => {
                     {siteRoute.label}
                   </Link>
 
-                  {siteRoute.href === "/favorites" && <HeaderDropdown />}
+                  {siteRoute.href === "/favorites" && (
+                    <Dropdown
+                      items={favoriteMovies}
+                      showOn={EnumShowOn.hover}
+                      className="top-[25px] w-[380px] h-[400px] transition-opacity duration-100 ease-in opacity-0 invisible group-hover:opacity-100 group-hover:visible"
+                      emptyStateLabel={
+                        isEmptyFavorites
+                          ? "You don't have any favorite movies yet!"
+                          : null
+                      }
+                      itemElement={itemElement}
+                    />
+                  )}
                 </li>
               );
             })}
@@ -75,7 +98,22 @@ const Header = ({ className }: HeaderProps) => {
         </nav>
       </div>
 
-      <Search className="" />
+      <div>
+        <MoviesSearch
+          searchResults={(items) => {
+            if (items.length > 0) {
+              return (
+                <Dropdown
+                  items={items}
+                  className="h-[450px]"
+                  showOn={EnumShowOn.search}
+                  itemElement={itemElement}
+                />
+              );
+            }
+          }}
+        />
+      </div>
     </header>
   );
 };

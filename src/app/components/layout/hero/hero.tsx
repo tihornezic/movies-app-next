@@ -38,7 +38,7 @@ const Hero = () => {
 
         <button
           type="button"
-          onClick={() => router.push("/discover-movies")}
+          onClick={() => router.push("/discovery")}
           className="h-12 px-9 mb-2 text-md font-bold text-main transition-colors duration-150 bg-primary-100 rounded-lg focus:shadow-outline hover:bg-primary-200"
         >
           Discover Movies

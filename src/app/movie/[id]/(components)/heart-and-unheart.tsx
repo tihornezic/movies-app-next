@@ -5,28 +5,18 @@ import React from "react";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { MovieDetailedType } from "@/app/lib/types";
+import useManipulateFavoriteMovies from "@/app/lib/hooks/useManipulateFavoriteMovies";
 
 type HeartAndUnheartProps = {
   movie: MovieDetailedType;
 };
 
 const HeartAndUnheart = ({ movie }: HeartAndUnheartProps) => {
-  const { favoriteMovies, setFavoriteMovies } = useFavoritesContext();
+  const { manipulateFavoriteMovies, isMovieFavorite } =
+    useManipulateFavoriteMovies();
 
-  const isMovieFavorite =
-    favoriteMovies.map((movie) => movie.id).indexOf(movie.id) !== -1;
-
-    // TODO: make this reusable
-    const handleOnClick = () => {
-    if (isMovieFavorite) {
-      const filteredMovies = favoriteMovies.filter(
-        (item) => item.id !== movie.id
-      );
-
-      setFavoriteMovies(filteredMovies);
-    } else {
-      setFavoriteMovies([...favoriteMovies, movie]);
-    }
+  const handleOnClick = () => {
+    manipulateFavoriteMovies(movie);
   };
 
   return (
@@ -39,7 +29,7 @@ const HeartAndUnheart = ({ movie }: HeartAndUnheartProps) => {
           handleOnClick();
         }}
       >
-        {isMovieFavorite ? (
+        {isMovieFavorite(movie) ? (
           <HeartIconSolid className="size-7 text-red-700" />
         ) : (
           <HeartIconOutline className="size-7 text-red-700" />

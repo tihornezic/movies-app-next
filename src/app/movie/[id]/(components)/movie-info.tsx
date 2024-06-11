@@ -19,7 +19,7 @@ const sharedSkeletonProps = {
 const MovieInfo = async ({ movieId, movieData }: MovieInfoProps) => {
   const creditsData = await fetchInstance<any>(`/movie/${movieId}/credits`);
 
-  const date = new Date(movieData.release_date);
+  const date = new Date(movieData.release_date || movieData.first_air_date as string);
   const year = date.getFullYear();
 
   // TODO: type crew
@@ -43,7 +43,7 @@ const MovieInfo = async ({ movieId, movieData }: MovieInfoProps) => {
       <div className="flex gap-5 flex-col-reverse xl:flex-row">
         <PosterImage
           posterPath={movieData.poster_path}
-          alt={movieData.title}
+          alt={movieData.title || movieData.name as string}
           className={"self-center"}
         />
 

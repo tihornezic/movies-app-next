@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import useFilters from "@/app/lib/hooks/useFilters";
-import RangeSlider from "../../../components/inputs/range-slider";
+import RangeSliderInput from "../../../components/inputs/range-slider-input";
 import FilterNameAndResetButton from "./components/filter-name-and-reset-button";
 
 type ReleaseYearFilterProps = {
@@ -56,7 +56,7 @@ const ReleaseYearFilter = ({ ...props }: ReleaseYearFilterProps) => {
         }}
       />
 
-      <RangeSlider
+      <RangeSliderInput
         key={key}
         handleMouseUp={handleMouseUp}
         defaultValue={defaultValue}

@@ -1,14 +1,17 @@
 "use client";
 
-import clsx from "clsx";
-import React, { useState } from "react";
+import React from "react";
+import { DebouncedState } from "use-debounce";
 
 type SearchProps = {
   className?: React.ComponentProps<"div">["className"];
+  handleOnSearch: DebouncedState<(term: string) => Promise<void>>;
 };
 
-const Search = ({ className }: SearchProps) => {
-  const [isSearchActive, setIsSearchActive] = useState(false);
+const Search = ({ handleOnSearch, className }: SearchProps) => {
+  const handleOnChange = (term: string) => {
+    handleOnSearch(term);
+  };
 
   return (
     <div className={`relative ${className}`}>
@@ -32,21 +35,14 @@ const Search = ({ className }: SearchProps) => {
 
       <input
         type="text"
-        id="default-search"
         autoComplete="off"
-        className="h-8 py-1 pl-10 pr-4 rounded-sm text-sm min-w-96 bg-secondary text-white focus-visible:outline-none"
-        onFocus={() => setIsSearchActive(true)}
-        onBlur={() => setIsSearchActive(false)}
+        onChange={(e) => {
+          handleOnChange(e.target.value);
+        }}
+        className="h-8 py-1 pl-10 pr-4 rounded-sm text-sm min-w-96 bg-gray-900 text-white focus-visible:outline-none"
         placeholder="Search for movies..."
         required
       />
-
-      <div
-        className={clsx("absolute w-full h-10 bg-secondary", {
-          block: isSearchActive,
-          hidden: !isSearchActive,
-        })}
-      ></div>
     </div>
   );
 };

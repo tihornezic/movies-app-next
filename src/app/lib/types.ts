@@ -30,7 +30,7 @@ export type Genre = {
 
 export type MovieBaseType = {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   genre_ids: number[];
   id: number;
   original_languange: string;
@@ -38,8 +38,10 @@ export type MovieBaseType = {
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date: string;
-  title: string;
+  release_date?: string;
+  first_air_date?: string;
+  title?: string;
+  name?: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
@@ -70,10 +72,12 @@ export type MovieDetailedType = {
   | "popularity"
   | "poster_path"
   | "release_date"
+  | "first_air_date"
   | "title"
   | "video"
   | "vote_average"
   | "vote_count"
+  | "name"
 >;
 
 export type Movies = {
@@ -86,4 +90,9 @@ export type Movies = {
 export enum EnumTrigger {
   click,
   hover,
+}
+
+export enum EnumShowOn {
+  hover,
+  search,
 }
