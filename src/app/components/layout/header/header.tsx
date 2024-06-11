@@ -8,7 +8,6 @@ import HeaderDropdown from "./header-dropdown";
 import Search from "../../search/search";
 import styles from "./header.module.css";
 
-
 const siteRoutes = [
   {
     href: "/",
@@ -56,12 +55,13 @@ const Header = ({ className }: HeaderProps) => {
           <ul className="flex gap-x-10 text-[14px]">
             {siteRoutes.map((siteRoute) => {
               return (
-                <li key={siteRoute.href} className={styles['header-item']}>
+                <li key={siteRoute.href} className={styles["header-item"]}>
                   <Link
                     href={siteRoute.href}
                     className={clsx("text-sm", {
                       "text-white": pathname === siteRoute.href,
                       "text-gray-400": pathname !== siteRoute.href,
+                      "pointer-events-none": siteRoute.href === "/favorites",
                     })}
                   >
                     {siteRoute.label}

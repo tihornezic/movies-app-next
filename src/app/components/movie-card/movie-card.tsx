@@ -57,7 +57,7 @@ const MovieCard = ({ movieDetails }: MovieCardProps) => {
         // thhis:
         // className="w-[100%]"
         priority
-        // className="rounded-md"
+        className="rounded-md"
       />
 
       <div className={styles["movie-card-overlay"]}>
