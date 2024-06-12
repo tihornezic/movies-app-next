@@ -20,7 +20,7 @@ export const fetchInstance = async <T>(
     const response = await fetch(url, fetchOptions);
 
     if (!response.ok) {
-      throw new Error(`Error: ${response.status} ${response.statusText}`);
+      return null;
     }
 
     const data: T = await response.json();
@@ -28,6 +28,6 @@ export const fetchInstance = async <T>(
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
-    throw error;
+    throw new Error("Failed to fetch.");
   }
 };

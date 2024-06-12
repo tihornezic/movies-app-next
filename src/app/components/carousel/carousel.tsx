@@ -17,6 +17,15 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 2,
   variableWidth: true,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
 };
 
 const Carousel = <T extends ReactNode>({ carouselArray }: CarouselProps<T>) => {

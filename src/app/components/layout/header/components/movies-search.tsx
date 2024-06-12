@@ -10,9 +10,14 @@ import { useDebouncedCallback } from "use-debounce";
 type SearchProps = {
   className?: React.ComponentProps<"div">["className"];
   searchResults?: (items: any) => ReactNode;
+  searchInputClassName?: React.ComponentProps<"div">["className"];
 };
 
-const MoviesSearch = ({ searchResults, className }: SearchProps) => {
+const MoviesSearch = ({
+  searchResults,
+  className,
+  searchInputClassName,
+}: SearchProps) => {
   const [searchedMovies, setSearchedMovies] = useState<MovieDetailedType[]>([]);
 
   const pathname = usePathname();
@@ -27,7 +32,9 @@ const MoviesSearch = ({ searchResults, className }: SearchProps) => {
       `/search/multi?query=${term}&language=en_US`
     );
 
-    setSearchedMovies(moviesData.results);
+    if (moviesData) {
+      setSearchedMovies(moviesData.results);
+    }
   }, 300);
 
   useEffect(() => {
@@ -54,7 +61,10 @@ const MoviesSearch = ({ searchResults, className }: SearchProps) => {
         </svg>
       </div>
 
-      <SearchInput handleOnSearch={handleSearch} />
+      <SearchInput
+        handleOnSearch={handleSearch}
+        className={searchInputClassName}
+      />
 
       {searchResults?.(searchedMovies)}
     </div>

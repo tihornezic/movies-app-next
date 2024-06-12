@@ -37,11 +37,11 @@ const Page = async ({
     "/genre/movie/list"
   );
 
-  const pickedGenres = movieGenres.genres.filter((genre) =>
+  const pickedGenres = movieGenres?.genres.filter((genre) =>
     genresToShow.includes(genre.name.toLocaleLowerCase())
   );
 
-  const carouselsOfPickedGenres = pickedGenres.map((pickedGenre) => (
+  const carouselsOfPickedGenres = pickedGenres?.map((pickedGenre) => (
     <Suspense
       key={pickedGenre.id}
       fallback={<CarouselSkeleton {...sharedSkeletonProps} />}
@@ -58,14 +58,14 @@ const Page = async ({
       {/* discover movies heading, filters & movies carousel */}
       <div className="flex flex-col gap-14">
         {/* discover movies heading & filters */}
-        <div className="flex items-center gap-12">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
           <h2 className="text-white text-4xl font-bold">Discover movies</h2>
 
           <div className="flex items-center gap-7">
             <Popover
-              content={<GenresFilter filters={movieGenres.genres} />}
+              content={<GenresFilter filters={movieGenres?.genres ?? []} className="grid-cols-1 md:grid-cols-2" />}
               label="Genres"
-              className="w-[500px]"
+              className="w-[80%] h-[300px] md:w-[500px] md:h-[auto] overflow-y-auto left-[10%] md:left-[auto]"
             />
 
             <Popover
@@ -98,14 +98,7 @@ const Page = async ({
         )}
       </div>
 
-      {/*  */}
       <div className="flex flex-col gap-16">{carouselsOfPickedGenres}</div>
-
-      {/* <div className="grid grid-cols-1 sm:grid-cols-7 w-[100%] gap-[50px] justify-items-stretch">
-        {filteredMovies.results.map((movie) => (
-          <MovieCard key={movie.id} movieDetails={movie} />
-        ))}
-      </div> */}
     </div>
   );
 };

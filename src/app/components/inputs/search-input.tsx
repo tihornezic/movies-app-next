@@ -39,7 +39,7 @@ const Search = ({ handleOnSearch, className }: SearchProps) => {
         onChange={(e) => {
           handleOnChange(e.target.value);
         }}
-        className="h-8 py-1 pl-10 pr-4 rounded-sm text-sm min-w-96 bg-gray-900 text-white focus-visible:outline-none"
+        className="h-8 py-1 pl-10 pr-4 rounded-sm text-sm w-[100%] bg-gray-900 text-white focus-visible:outline-none"
         placeholder="Search for movies..."
         required
       />

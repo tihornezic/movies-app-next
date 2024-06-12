@@ -8,14 +8,21 @@ import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { MovieDetailedType } from "../../lib/types";
 import styles from "./movie-card.module.css";
 import useManipulateFavoriteMovies from "@/app/lib/hooks/useManipulateFavoriteMovies";
+import { useFavoritesContext } from "@/app/lib/context/favorites-context";
+import { useEffect } from "react";
 
 type MovieCardProps = {
   movieDetails: MovieDetailedType;
 };
 
 const MovieCard = ({ movieDetails }: MovieCardProps) => {
+  const { favoriteMovies } = useFavoritesContext();
   const { manipulateFavoriteMovies, isMovieFavorite } =
     useManipulateFavoriteMovies();
+
+  useEffect(() => {
+    localStorage.setItem("favoriteMoviesIds", JSON.stringify(favoriteMovies));
+  }, [favoriteMovies]);
 
   const handleOnClick = () => {
     manipulateFavoriteMovies(movieDetails);

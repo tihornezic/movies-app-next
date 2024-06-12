@@ -5,12 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FilmIcon } from "@heroicons/react/24/solid";
 import Dropdown from "../../dropdown/dropdown";
-import Search from "../../inputs/search-input";
-// import styles from "./header.module.css";
 import { useFavoritesContext } from "@/app/lib/context/favorites-context";
-import MovieListItem from "../../movie-item/movie-item";
+import MovieItem from "../../movie-item/movie-item";
 import { EnumShowOn, MovieDetailedType } from "@/app/lib/types";
 import MoviesSearch from "./components/movies-search";
+import HamburgerMenu from "./components/hamburger-menu";
 
 const siteRoutes = [
   {
@@ -32,7 +31,7 @@ type HeaderProps = {
 };
 
 const itemElement = (key: string, item: MovieDetailedType) => (
-  <MovieListItem key={key} movie={item} />
+  <MovieItem key={key} movie={item} />
 );
 
 const Header = ({ className }: HeaderProps) => {
@@ -62,7 +61,7 @@ const Header = ({ className }: HeaderProps) => {
           </Link>
         </div>
 
-        <nav>
+        <nav className="hidden lg:block">
           <ul className="flex gap-x-10 text-[14px]">
             {siteRoutes.map((siteRoute) => {
               return (
@@ -98,22 +97,24 @@ const Header = ({ className }: HeaderProps) => {
         </nav>
       </div>
 
-      <div>
-        <MoviesSearch
-          searchResults={(items) => {
-            if (items.length > 0) {
-              return (
-                <Dropdown
-                  items={items}
-                  className="h-[450px]"
-                  showOn={EnumShowOn.search}
-                  itemElement={itemElement}
-                />
-              );
-            }
-          }}
-        />
-      </div>
+      <MoviesSearch
+        className="hidden lg:block"
+        searchInputClassName="w-96"
+        searchResults={(items) => {
+          if (items.length > 0) {
+            return (
+              <Dropdown
+                items={items}
+                className="h-[450px]"
+                showOn={EnumShowOn.search}
+                itemElement={itemElement}
+              />
+            );
+          }
+        }}
+      />
+
+      <HamburgerMenu className="mt-2" />
     </header>
   );
 };

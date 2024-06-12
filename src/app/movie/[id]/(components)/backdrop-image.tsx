@@ -9,6 +9,10 @@ type BackdropImageProps = {
 };
 
 const BackdropImage = ({ backdropPath, alt }: BackdropImageProps) => {
+  if (backdropPath === "") {
+    return <div className="bg-gray-800 h-[502px]"></div>;
+  }
+
   return (
     <Image
       src={`${BACKDROP_URL}/${backdropPath}`}

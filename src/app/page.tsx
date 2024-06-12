@@ -4,7 +4,6 @@ import CarouselSkeleton from "./components/carousel/carousel-skeleton";
 import CarouselWrapper from "./components/carousel/carousel-wrapper";
 import Hero from "./components/layout/hero/hero";
 import FeatureCard from "./components/feature-card/feature-card";
-import { usePathname } from "next/navigation";
 
 const sharedSkeletonProps = {
   cardsSkeletonLength: 12,
@@ -46,7 +45,9 @@ const Home = () => {
       </div>
 
       <div className={`${LAYOUT_STYLES} mt-6 `}>
-        <h2 className="text-white text-5xl font-bold max-w-[50%]">Search new, popular & upcoming movies</h2>
+        <h2 className="text-white text-4xl md:text-5xl font-bold max-w-[50%]">
+          Search new, popular & upcoming movies
+        </h2>
       </div>
 
       <div className={`${LAYOUT_STYLES} flex flex-col gap-14 mt-8`}>

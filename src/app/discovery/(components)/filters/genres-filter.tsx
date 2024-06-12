@@ -10,9 +10,10 @@ import FilterNameAndResetButton from "./components/filter-name-and-reset-button"
 
 type GenresFilterProps = {
   filters: Genre[];
+  className?: React.ComponentProps<"div">["className"];
 };
 
-const GenresFilter = ({ filters }: GenresFilterProps) => {
+const GenresFilter = ({ filters, className }: GenresFilterProps) => {
   const searchParams = useSearchParams();
   const { manipulateQueryParams, deleteQueryParams } = useFilters();
   const [selectedFilters, setSelectedFilters] = useState<Genre["id"][]>([]);
@@ -50,7 +51,7 @@ const GenresFilter = ({ filters }: GenresFilterProps) => {
         }}
       />
 
-      <div className="grid grid-cols-2 gap-1">
+      <div className={`grid grid-cols-2 gap-1 ${className}`}>
         {filters.map((filter) => {
           const isSelected = selectedFilters.includes(filter.id);
 

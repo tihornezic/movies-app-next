@@ -17,12 +17,6 @@ const FilterNameAndResetButton = ({
         className="flex gap-1 text-gray-400"
         onClick={() => {
           onReset();
-          // setDefaultValue(undefined);
-          // setKey((prevKey) => prevKey + 1);
-          // deleteQueryParams({
-          //   queryKeyToDelete: "primary_release_year",
-          //   withConvertEncodedCommas: true,
-          // });
         }}
       >
         <XMarkIcon className="size-5" />

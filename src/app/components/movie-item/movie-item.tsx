@@ -2,15 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { POSTER_URL_SMALL } from "@/app/lib/constants";
 import { MovieDetailedType } from "@/app/lib/types";
-import { useFavoritesContext } from "@/app/lib/context/favorites-context";
 import styles from "./movie-item.module.css";
 import useManipulateFavoriteMovies from "@/app/lib/hooks/useManipulateFavoriteMovies";
 
 type MovieListItemProps = {
   movie: MovieDetailedType;
+  onClick?: () => void;
+  className?: React.ComponentProps<"div">["className"];
 };
 
-const MovieItem = ({ movie }: MovieListItemProps) => {
+const MovieItem = ({ movie, onClick, className }: MovieListItemProps) => {
   const { manipulateFavoriteMovies, isMovieFavorite } =
     useManipulateFavoriteMovies();
 
@@ -22,17 +23,26 @@ const MovieItem = ({ movie }: MovieListItemProps) => {
   };
 
   return (
-    <Link key={movie.id} href={`/movie/${movie.id}`} className={styles.link}>
+    <Link
+      key={movie.id}
+      href={`/movie/${movie.id}`}
+      className={styles.link}
+      onClick={onClick}
+    >
       <div
-        className={`${styles["movie-list-item"]} flex items-center py-3 px-4 gap-6`}
+        className={`${styles["movie-list-item"]} rounded-sm flex items-center py-3 px-4 gap-6 ${className}`}
       >
-        {movie.poster_path && (
+        {movie.poster_path ? (
           <Image
             src={`${POSTER_URL_SMALL}/${movie.poster_path}`}
             alt={movie.title ?? (movie.name as string)}
             width={60}
-            height={60}
+            height={90}
           />
+        ) : (
+          <div className="w-[85px] h-[90px] rounded-sm bg-gray-700 flex items-center justify-center">
+            <span className="text-gray-300 font-bold">?</span>
+          </div>
         )}
 
         <div className="flex flex-col gap-2 w-[100%]">
@@ -41,7 +51,7 @@ const MovieItem = ({ movie }: MovieListItemProps) => {
               {movie.title ?? movie.name}
               {"  "}
               <span className="text-gray-400 h-fit text-sm font-medium">
-                ({year})
+                ({isNaN(year) ? "N/A" : year})
               </span>
             </h2>
           </div>

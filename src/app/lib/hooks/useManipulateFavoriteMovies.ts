@@ -5,10 +5,6 @@ import { MovieDetailedType } from "../types";
 const useManipulateFavoriteMovies = () => {
   const { favoriteMovies, setFavoriteMovies } = useFavoritesContext();
 
-  useEffect(() => {
-    localStorage.setItem("favoriteMoviesIds", JSON.stringify(favoriteMovies));
-  }, [favoriteMovies]);
-
   const isMovieFavorite = (movie: MovieDetailedType) =>
     favoriteMovies.map((movie) => movie.id).indexOf(movie.id) !== -1;
 

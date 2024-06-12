@@ -2,7 +2,6 @@ const CardSkeleton = () => {
   return (
     <div
       role="status"
-      // className="min-w-[160px] h-[240px] p-4 border border-gray-200 rounded shadow md:p-0 dark:border-gray-700"
       className="min-w-[190px] h-[285px] p-4 border border-gray-200 rounded shadow md:p-0 dark:border-gray-700"
     >
       <div className="flex items-center justify-center h-full bg-gray-300 rounded dark:bg-gray-700">

@@ -17,7 +17,7 @@ const CarouselWrapper = async ({
   // await new Promise((resolve) => setTimeout(resolve, 3000));
   const moviesData = await fetchInstance<Movies>(url);
 
-  const moviesCarouselArray = moviesData.results.map((item) => (
+  const moviesCarouselArray = moviesData?.results.map((item) => (
     <div key={item.id} className="pr-5">
       <MovieCard movieDetails={item} />
     </div>
@@ -31,7 +31,7 @@ const CarouselWrapper = async ({
         </h3>
       )}
 
-      <Carousel carouselArray={moviesCarouselArray} />
+      <Carousel carouselArray={moviesCarouselArray ?? []} />
     </div>
   );
 };
