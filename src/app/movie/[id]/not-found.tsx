@@ -10,7 +10,7 @@ export default function NotFound() {
       <p className="text-white">Could not find the requested movie.</p>
 
       <Link
-        href="/dashboard/invoices"
+        href="/"
         className="mt-4 rounded-md bg-primary-100 font-bold px-4 py-2 text-sm text-main transition-colors hover:bg-primary-200"
       >
         Go Back

@@ -23,24 +23,24 @@ const Home = () => {
         className={`${LAYOUT_STYLES} flex flex-col lg:flex-row justify-between gap-y-[12%] sm:gap-[12%] w-[100%] z-50 mt-[-50px] mb-7`}
       >
         <FeatureCard
-          tag="All at one place"
+          tag="Your full guide"
           heading="Your full guide for discovering movies"
-          text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita sunt culpa aspernatur labore repellat quam?"
+          text="Filter through thousands an thousands of movies."
           imgSrc="/popcorn.png"
         />
 
         <FeatureCard
-          tag="All at one place"
-          heading="Your full guide for discovering movies"
-          text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita sunt culpa aspernatur labore repellat quam?"
-          imgSrc="/tickets.png"
+          tag="Add to favorites"
+          heading="Store your favorites"
+          text="Easily find and then add movies to favorites where you can quickly check all favorite movies."
+          imgSrc="/action.png"
         />
 
         <FeatureCard
-          tag="All at one place"
-          heading="Your full guide for discovering movies"
-          text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita sunt culpa aspernatur labore repellat quam?"
-          imgSrc="/action.png"
+          tag="One search"
+          heading="Use search to quickly find movie titles"
+          text="Never miss out on the opportunity to find a movie."
+          imgSrc="/tickets.png"
         />
       </div>
 
