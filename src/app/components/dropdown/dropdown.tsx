@@ -4,9 +4,9 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 import { EnumShowOn } from "@/app/lib/types";
 
-type HeaderDropdownProps = {
-  items: any;
-  itemElement: (key: string, item: any) => ReactNode;
+type DropdownProps<T> = {
+  items: T[];
+  itemElement: (key: number | string, item: T) => ReactNode;
   className?: React.ComponentProps<"div">["className"];
   showOn: EnumShowOn;
   emptyStateLabel?: string | null;
@@ -15,13 +15,13 @@ type HeaderDropdownProps = {
 const sharedStyles =
   "absolute top-8 rounded-md w-[100%] bg-gray-900 overflow-y-auto z-10";
 
-const HeaderDropdown = ({
+const Dropdown = <T extends { id: number | string }>({
   items,
   itemElement,
   className,
   showOn,
   emptyStateLabel,
-}: HeaderDropdownProps) => {
+}: DropdownProps<T>) => {
   if (showOn === EnumShowOn.hover) {
     return (
       <div
@@ -36,7 +36,7 @@ const HeaderDropdown = ({
           <span className="text-gray-200 font-medium">{emptyStateLabel}</span>
         )}
 
-        {items.map((item: any) => {
+        {items.map((item) => {
           return itemElement(item.id, item);
         })}
       </div>
@@ -50,11 +50,11 @@ const HeaderDropdown = ({
         hidden: items.length === 0,
       })}
     >
-      {items.map((item: any) => {
+      {items.map((item) => {
         return itemElement(item.id, item);
       })}
     </div>
   );
 };
 
-export default HeaderDropdown;
+export default Dropdown;

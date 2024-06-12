@@ -30,7 +30,7 @@ type HeaderProps = {
   className?: React.ComponentProps<"div">["className"];
 };
 
-const itemElement = (key: string, item: MovieDetailedType) => (
+const itemElement = (key: string | number, item: MovieDetailedType) => (
   <MovieItem key={key} movie={item} />
 );
 

@@ -19,7 +19,7 @@ const ReactPopover = ({
   className,
 }: ReactPopoverProps) => {
   const [show, setShow] = useState(false);
-  const wrapperRef = useRef<any>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleMouseOver = () => {
     if (trigger === EnumTrigger.hover) {
@@ -34,8 +34,11 @@ const ReactPopover = ({
   };
 
   useEffect(() => {
-    function handleClickOutside(event: any) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         setShow(false);
       }
     }

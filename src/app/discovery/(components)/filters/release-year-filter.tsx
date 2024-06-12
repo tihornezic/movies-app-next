@@ -32,8 +32,6 @@ const ReleaseYearFilter = ({ ...props }: ReleaseYearFilterProps) => {
   useEffect(() => {
     const search = searchParams.get("primary_release_year");
 
-    console.log(search);
-
     if (search) {
       setDefaultValue(search);
     } else {

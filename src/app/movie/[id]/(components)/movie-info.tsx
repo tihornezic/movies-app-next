@@ -32,7 +32,7 @@ const MovieInfo = async ({ movieId, movieData }: MovieInfoProps) => {
 
   const castArray =
     cast
-      ?.map((item: any) => (
+      ?.map((item) => (
         <div key={item.id} className="flex gap-2">
           <span className="text-teal-700 text-sm">{item.name}</span>
           <span className="text-white text-sm">{item.character}</span>

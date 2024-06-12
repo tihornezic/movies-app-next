@@ -4,7 +4,7 @@ import { useFavoritesContext } from "@/app/lib/context/favorites-context";
 import MovieItem from "@/app/components/movie-item/movie-item";
 import MoviesSearch from "./movies-search";
 import Dropdown from "@/app/components/dropdown/dropdown";
-import { EnumShowOn } from "@/app/lib/types";
+import { EnumShowOn, MovieDetailedType } from "@/app/lib/types";
 
 type HamburgerMenu = {
   className?: React.ComponentProps<"div">["className"];
@@ -71,9 +71,9 @@ const HamburgerMenu = ({ className }: HamburgerMenu) => {
                       items={items}
                       className="h-[450px]"
                       showOn={EnumShowOn.search}
-                      itemElement={(key, item) => (
+                      itemElement={(key, item: MovieDetailedType) => (
                         <MovieItem
-                          key={item.id}
+                          key={key}
                           movie={item}
                           onClick={toggleMenu}
                           className="w-[100%]"

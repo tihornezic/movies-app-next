@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 type RangeSliderProps = {
   min: number;
   max: number;
   defaultValue?: string;
   label: string;
-  handleMouseUp: (e: any) => void;
+  handleMouseUp: (e: string) => void;
 };
 
 const RangeSlider = ({
@@ -23,7 +23,7 @@ const RangeSlider = ({
     if (defaultValue) setValue(defaultValue);
   }, [defaultValue]);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 

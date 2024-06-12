@@ -9,7 +9,7 @@ import { useDebouncedCallback } from "use-debounce";
 
 type SearchProps = {
   className?: React.ComponentProps<"div">["className"];
-  searchResults?: (items: any) => ReactNode;
+  searchResults?: (items: MovieDetailedType[]) => ReactNode;
   searchInputClassName?: React.ComponentProps<"div">["className"];
 };
 
